@@ -13,15 +13,31 @@ var (
 	port     = 5432
 	user     = ""
 	password = ""
-	dbname   = ""
+	dbname   = "test"
 )
 
 func main() {
 	fmt.Println("nomodo.io postgresql connection test")
 
+	var err error
+
+	fmt.Print("host: ")
+	fmt.Scanf("%s", &host)
+
+	fmt.Print("port: ")
+	if _, err := fmt.Scanf("%d", &port); err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Print("user: ")
+	fmt.Scanf("%s: ", &user)
+
+	fmt.Print("password: ")
+	fmt.Scanf("%s ", &password)
+
 	psqlInfo := fmt.Sprintf(
-		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		host, port, user, password, dbname,
+		"postgres://%s:%s@%s:%d/?sslmode=disable",
+		user, password, host, port,
 	)
 
 	db, err := sql.Open("postgres", psqlInfo)
