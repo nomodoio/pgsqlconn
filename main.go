@@ -13,7 +13,6 @@ var (
 	port     = 5432
 	user     = ""
 	password = ""
-	dbname   = "test"
 )
 
 func main() {
