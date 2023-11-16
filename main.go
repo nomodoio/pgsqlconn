@@ -51,4 +51,18 @@ func main() {
 	}
 
 	fmt.Println("successfully connected!")
+
+	fmt.Println("db list:")
+	rows, err := db.Query("SELECT datname FROM pg_database")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		dbNama := ""
+		rows.Scan(&dbNama)
+		fmt.Println("-", dbNama)
+	}
+
 }
