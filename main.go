@@ -39,6 +39,8 @@ func main() {
 		user, password, host, port,
 	)
 
+	fmt.Println("conn:", psqlInfo)
+
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
 		log.Fatal(err)
@@ -64,5 +66,4 @@ func main() {
 		rows.Scan(&dbNama)
 		fmt.Println("-", dbNama)
 	}
-
 }
